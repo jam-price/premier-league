@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useStore } from "react-redux";
 import fetchData from "../../api";
 import { SET_DATA } from "../../store/action-types";
-import styles from './App.module.scss'
+import styles from "./App.module.scss";
+import Header from "../header/header";
 
 const getData = async () => {
   const data = await fetchData();
@@ -15,12 +16,12 @@ const App = () => {
     getData().then((data) => dispatch({ type: SET_DATA, payload: data }));
   }, [dispatch]);
 
-  console.log(styles)
-
   const { getState } = useStore();
-  console.log(getState());
+  // console.log(Object?.keys(getState().data));
 
-  return <div className={styles.app}>here</div>;
+  return <div className={styles.app}>
+    <Header/>
+  </div>;
 };
 
 export default App;
